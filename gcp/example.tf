@@ -52,7 +52,7 @@ resource "google_compute_instance" "default" {
     network = "default"
 
     access_config {
-      nat_ip = "${google_compute_address.default.address}"
+      nat_ip = google_compute_address.default.address
     }
   }
 
@@ -67,5 +67,5 @@ resource "google_compute_instance" "default" {
 }
 
 output "public_ip" {
-  value = "${google_compute_address.default.address}"
+  value = google_compute_address.default.address
 }

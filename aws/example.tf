@@ -56,7 +56,7 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "test" {
-  ami           = "${data.aws_ami.ubuntu.id}"
+  ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   key_name      = var.ssh_key_name
 
@@ -65,10 +65,10 @@ resource "aws_instance" "test" {
   }
 
   security_groups = [
-    "${aws_security_group.ssh.name}"
+    aws_security_group.ssh.name
   ]
 }
 
 output "public_ip" {
-  value = "${aws_instance.test.public_ip}"
+  value = aws_instance.test.public_ip
 }
